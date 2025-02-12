@@ -131,7 +131,7 @@ const mostrarPuntuacion = document.getElementById("puntuacion");
 
 //Pongo la suma de la puntuacion y el mensaje que dicta el ejercicio
 
-const comprobarResultado = ()  => {
+const mostrarMensajeResultado = (mensaje: string)  => {
   
   const mostrarMensajePuntuacion = document.getElementById("mensaje-puntuacion");
   if (
@@ -139,20 +139,9 @@ const comprobarResultado = ()  => {
    mostrarMensajePuntuacion !== undefined &&
    mostrarMensajePuntuacion instanceof HTMLDivElement
  ){
-    mostrarMensajePuntuacion.textContent="";
+    mostrarMensajePuntuacion.textContent= mensaje;
  }
 
- if (puntuacionJugador < 4) {
-       mostrarMensajePuntuacion.textContent = `Has sido muy conservador`;
-      } else if (puntuacionJugador === 5) {
-       mostrarMensajePuntuacion.textContent = `Te ha entrado el cangelo eh?`;
-      } else if (puntuacionJugador === 6 || puntuacionJugador === 7) {
-       mostrarMensajePuntuacion.textContent = `Casi , casi`;
-      } else if (puntuacionJugador === 7.5) {
-       mostrarMensajePuntuacion.textContent = `¡Los has clavado! ¡Enhorabuena!`;
-      }
-   
-     //Sale en rojo  
 
 }
 
@@ -164,23 +153,40 @@ const comprobarResultado = ()  => {
 
     muestraPuntuacionJugador();
 
-    comprobarResultado();
-
    
- };
+ }
 
 const nuevaPartida =  ()  =>{
   puntuacionJugador = 0
-  muestraPuntuacionJugador();
-  const botonSolicitar = document.getElementById("nueva-partida");
-  if (botonSolicitar !== null && botonSolicitar instanceof HTMLButtonElement) 
-    {  botonSolicitar.addEventListener("click", botonSolicitar) }
+  mostrarImagenCarta("https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/refs/heads/main/cartas/back.jpg");
 
+}
+
+const comprobarPartida = () =>{
+  
+
+  if (puntuacionJugador < 4) {
+    mostrarMensajeResultado (`Has sido muy conservador`); 
+   } else if (puntuacionJugador === 5) {
+    mostrarMensajeResultado (`Te ha entrado el cangelo eh?`); 
+   } else if (puntuacionJugador === 6 || puntuacionJugador === 7) {
+    mostrarMensajeResultado(`Casi , casi`);
+   } else if (puntuacionJugador === 7.5) {
+    mostrarMensajeResultado(`¡Los has clavado! ¡Enhorabuena!`);
+   }
 
 
 }
 
-//faltaria mensaje de estado has ganado , casi cas etc
-//faltaria boton nueva partida
-//faltaria boton reinicio
-//faltaria boton que hubiera pasado
+const botonPartidaNueva = () => {
+
+  nuevaPartida();
+
+  sumarPuntuacionJugador;
+
+}
+
+
+//faltaria boton nueva partida y deshabilitar los botones
+//faltaria boton reinicio y habilitar los botones
+//faltaria boton que hubiera pasado quitando tambien los botones
