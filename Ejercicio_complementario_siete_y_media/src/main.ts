@@ -1,192 +1,193 @@
-
-const mensajePuntuacionSimulacion = document.getElementById("mensaje-simulacion");
-if (
-  mensajePuntuacionSimulacion !== null &&
-  mensajePuntuacionSimulacion !== undefined &&
-  mensajePuntuacionSimulacion instanceof HTMLDivElement
-) {
-}
-
-
-
 //Hay que generar el numero aleatorio
 
 let puntuacionJugador = 0;
 
 const numeroAleatorio = () => {
-  const numero = Math.floor(Math.random() * 6) + 1;
-  numero > 7 ? numero + 2 : numero;
+  return Math.floor(Math.random() * 10) + 1;
 };
 
-const mostrarImagenCarta = (url: string) : void => {
+//Obtener el numero de la carta
+
+const obtenerNumeroCarta = (numeroAleatorio: number): number => {
+  return numeroAleatorio > 7 ? numeroAleatorio + 2 : numeroAleatorio;
+};
+
+//Calcular los puntos de la carta
+
+const obtenerPuntosCarta = (carta: number): number => {
+  return carta > 7 ? 0.5 : carta;
+};
+
+//Imagen de la carta boca abajo
+
+const mostrarImagenCarta = (urlDeCarta: string): void => {
   const imagenCarta = document.getElementById("imagenCarta");
   if (
     imagenCarta !== null &&
     imagenCarta !== undefined &&
     imagenCarta instanceof HTMLImageElement
   ) {
-    imagenCarta.src = url;
+    imagenCarta.src = urlDeCarta;
   }
 };
 
-const obtenerImagenCarta = (numeroCarta: number) : void => {
-  switch (numeroCarta) {
-    case 1:
-      mostrarImagenCarta(
-        "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/1_as-copas.jpg"
-      );
+//Poner cada carta con su imagen correspondiente
 
-      break;
+const obtenerImagenCarta = (carta: number): string => {
+  switch (carta) {
+    case 1:
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/1_as-copas.jpg";
 
     case 2:
-      mostrarImagenCarta(
-        "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/2_dos-copas.jpg"
-      );
-
-      break;
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/2_dos-copas.jpg";
 
     case 3:
-      mostrarImagenCarta(
-        "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/3_tres-copas.jpg"
-      );
-
-      break;
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/3_tres-copas.jpg";
 
     case 4:
-      mostrarImagenCarta(
-        "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/4_cuatro-copas.jpg"
-      );
-
-      break;
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/4_cuatro-copas.jpg";
 
     case 5:
-      mostrarImagenCarta(
-        "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/5_cinco-copas.jpg"
-      );
-
-      break;
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/5_cinco-copas.jpg";
 
     case 6:
-      mostrarImagenCarta(
-        "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/6_seis-copas.jpg"
-      );
-
-      break;
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/6_seis-copas.jpg";
 
     case 7:
-      mostrarImagenCarta(
-        "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/7_siete-copas.jpg"
-      );
-
-      break;
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/7_siete-copas.jpg";
 
     case 10:
-      mostrarImagenCarta(
-        "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/10_sota-copas.jpg"
-      );
-
-      break;
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/10_sota-copas.jpg";
 
     case 11:
-      mostrarImagenCarta(
-        "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/11_caballo-copas.jpg"
-      );
-
-      break;
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/11_caballo-copas.jpg";
 
     case 12:
-      mostrarImagenCarta(
-        "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/12_rey-copas.jpg"
-      );
-
-      break;
+      return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/12_rey-copas.jpg";
 
     default:
-      console.error("Carta no reconocida");
+      return "Carta no reconocida";
   }
 };
 
+//Pongo una funcion para mostrar la puntuación del jugador y sus puntos actuales
 
-//Calcular puntuacion carta
-
-const calcularPuntuacionCarta = (numeroCarta: number)  => {
-const puntuacion = numeroCarta >= 10 ? 0.5 : numeroCarta;
-   puntuacionJugador += puntuacion;
-}
-
-//Pongo una funcion para mostrar la puntuación del jugador
-
-const muestraPuntuacionJugador = () => {
-
-const mostrarPuntuacion = document.getElementById("puntuacion");
- if (
+const muestraPuntuacionJugador = (puntosActuales: number) => {
+  const mostrarPuntuacion = document.getElementById("puntuacion");
+  if (
     mostrarPuntuacion !== null &&
     mostrarPuntuacion !== undefined &&
     mostrarPuntuacion instanceof HTMLDivElement
- ) {
-    mostrarPuntuacion.textContent = `Puntuacion: ${puntuacionJugador} `
- }
+  ) {
+    mostrarPuntuacion.textContent = `Puntuacion: ${puntuacionJugador} `;
+  }
 
- }
+  puntuacionJugador = puntosActuales;
+};
 
-//Pongo la suma de la puntuacion y el mensaje que dicta el ejercicio
+//Suma de la puntuacion
 
-const mostrarMensajeResultado = (mensaje: string)  => {
-  
-  const mostrarMensajePuntuacion = document.getElementById("mensaje-puntuacion");
+const sumarPuntuacionJugador = (puntos: number): number => {
+  puntuacionJugador += puntos;
+  return puntuacionJugador;
+};
+
+const comprobarPartida = () => {
+  const mostrarMensajePuntuacion =
+    document.getElementById("mensaje-puntuacion");
   if (
-   mostrarMensajePuntuacion !== null &&
-   mostrarMensajePuntuacion !== undefined &&
-   mostrarMensajePuntuacion instanceof HTMLDivElement
- ){
-    mostrarMensajePuntuacion.textContent= mensaje;
- }
+    mostrarMensajePuntuacion !== null &&
+    mostrarMensajePuntuacion !== undefined &&
+    mostrarMensajePuntuacion instanceof HTMLDivElement
+  ) {
+    if (puntuacionJugador < 4) {
+      mostrarMensajePuntuacion.textContent = `Has sido muy conservador`;
+    } else if (puntuacionJugador === 5) {
+      mostrarMensajePuntuacion.textContent = `Te ha entrado el cangelo eh?`;
+    } else if (puntuacionJugador === 6 || puntuacionJugador === 7) {
+      mostrarMensajePuntuacion.textContent = `Casi , casi`;
+    } else if (puntuacionJugador === 7.5) {
+      mostrarMensajePuntuacion.textContent = `¡Los has clavado! ¡Enhorabuena!`;
+    } else if (puntuacionJugador > 7.5) {
+      mostrarMensajePuntuacion.textContent = `Game over`;
+    } else {
+      mostrarMensajePuntuacion.textContent = "";
+    }
+  }
+};
+const solicitarCarta = () => {
+  const cartaAleatoria = numeroAleatorio();
+  const carta = obtenerNumeroCarta(cartaAleatoria);
+  const urlCarta = obtenerImagenCarta(carta);
+  mostrarImagenCarta(urlCarta);
+  const puntosCarta = obtenerPuntosCarta(carta);
+  const puntosSumados = sumarPuntuacionJugador(puntosCarta);
+  muestraPuntuacionJugador(puntosSumados);
+  comprobarPartida();
+}
 
+const botonSolicitarCarta = document.getElementById("solicitar");
+if (
+  botonSolicitarCarta !== null &&
+  botonSolicitarCarta !== undefined &&
+  botonSolicitarCarta instanceof HTMLButtonElement
+) {
+  botonSolicitarCarta.addEventListener("click", solicitarCarta);
+}
 
+const nuevaPartida = () => {
+  mostrarImagenCarta(
+    "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/refs/heads/main/cartas/back.jpg"
+  );
+  puntuacionJugador = 0;
+  muestraPuntuacionJugador(puntuacionJugador);
+};
+
+const botonNuevaPartida = document.getElementById("nueva-partida");
+if (
+  botonNuevaPartida !== null &&
+  botonNuevaPartida !== undefined &&
+  botonNuevaPartida instanceof HTMLButtonElement
+) {
+  botonNuevaPartida.addEventListener("click", nuevaPartida);
+}
+
+const simularQueHubieraPasado = () => {
+  let simulacionPuntuacion = puntuacionJugador;
+  const mensajeSimulacion = document.getElementById("mensaje-simulacion");
+  if (
+    mensajeSimulacion !== null &&
+    mensajeSimulacion !== undefined &&
+    mensajeSimulacion instanceof HTMLDivElement
+  ) {
+    const cartaAleatoria = numeroAleatorio();
+    const carta = obtenerNumeroCarta(cartaAleatoria);
+    const puntosCarta = obtenerPuntosCarta(carta);
+    simulacionPuntuacion += puntosCarta;
+    if (simulacionPuntuacion > 7.5) {
+      mensajeSimulacion.textContent =
+        "Si hubieras continuado, te habrías pasado y perdido.";
+    } else if (simulacionPuntuacion === 7.5) {
+      mensajeSimulacion.textContent =
+        "Si hubieras seguido, podrías haber ganado.";
+    } else {
+      mensajeSimulacion.textContent =
+        "Si hubieras seguido, podrías haber continuado sin pasarte.";
+    }
+  }
 }
 
 
 
- const sumarPuntuacionJugador = (numeroCarta: number) => {
-   
-    calcularPuntuacionCarta(numeroCarta);
 
-    muestraPuntuacionJugador();
-
-   
- }
-
-const nuevaPartida =  ()  =>{
-  puntuacionJugador = 0
-  mostrarImagenCarta("https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/refs/heads/main/cartas/back.jpg");
-
+const botonPasado = document.getElementById("pasado");
+if (
+  botonPasado !== null &&
+  botonPasado !== undefined &&
+  botonPasado instanceof HTMLButtonElement
+) {
+  botonPasado.addEventListener("click", simularQueHubieraPasado);
 }
 
-const comprobarPartida = () =>{
-  
-
-  if (puntuacionJugador < 4) {
-    mostrarMensajeResultado (`Has sido muy conservador`); 
-   } else if (puntuacionJugador === 5) {
-    mostrarMensajeResultado (`Te ha entrado el cangelo eh?`); 
-   } else if (puntuacionJugador === 6 || puntuacionJugador === 7) {
-    mostrarMensajeResultado(`Casi , casi`);
-   } else if (puntuacionJugador === 7.5) {
-    mostrarMensajeResultado(`¡Los has clavado! ¡Enhorabuena!`);
-   }
-
-
-}
-
-const botonPartidaNueva = () => {
-
-  nuevaPartida();
-
-  sumarPuntuacionJugador;
-
-}
-
-
-//faltaria boton nueva partida y deshabilitar los botones
 //faltaria boton reinicio y habilitar los botones
 //faltaria boton que hubiera pasado quitando tambien los botones
