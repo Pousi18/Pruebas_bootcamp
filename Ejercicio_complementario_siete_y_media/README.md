@@ -1,0 +1,3 @@
+# **Juego de las Siete y Media**:
+
+Desarrolla un juego interactivo en el que el usuario pueda disfrutar de la experiencia de jugar a las Siete y Media en solitario. Utiliza una baraja española compuesta por 40 cartas. Al comenzar la partida, baraja las cartas y muestra la primera carta al jugador. Este tendrá la opción de pedir cartas adicionales hasta que decida plantarse o su puntuación supere el umbral de 7.5. Cada carta numérica debe tener su valor correspondiente, mientras que las figuras (sota, caballo y rey) contarán como medio punto. Al finalizar el juego, presenta un mensaje que indique si el jugador ha conseguido ganar (alcanzando exactamente 7.5) o ha perdido (superando 7.5), además de mostrar su puntuación total.
