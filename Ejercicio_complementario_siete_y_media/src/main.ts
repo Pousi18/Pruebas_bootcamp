@@ -92,6 +92,8 @@ const sumarPuntuacionJugador = (puntos: number): number => {
   return puntuacionJugador;
 };
 
+//Comprobar los puntos y mensajes de estado
+
 const comprobarPartida = () => {
   const mostrarMensajePuntuacion =
     document.getElementById("mensaje-puntuacion");
@@ -115,6 +117,9 @@ const comprobarPartida = () => {
     }
   }
 };
+
+//Todas las funciones al pedir la carta
+
 const solicitarCarta = () => {
   const cartaAleatoria = numeroAleatorio();
   const carta = obtenerNumeroCarta(cartaAleatoria);
@@ -124,7 +129,9 @@ const solicitarCarta = () => {
   const puntosSumados = sumarPuntuacionJugador(puntosCarta);
   muestraPuntuacionJugador(puntosSumados);
   comprobarPartida();
-}
+};
+
+//Boton de pedir carta
 
 const botonSolicitarCarta = document.getElementById("solicitar");
 if (
@@ -135,6 +142,8 @@ if (
   botonSolicitarCarta.addEventListener("click", solicitarCarta);
 }
 
+//Función de reiniciar el juego al pedir la carta
+
 const nuevaPartida = () => {
   mostrarImagenCarta(
     "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/refs/heads/main/cartas/back.jpg"
@@ -142,6 +151,8 @@ const nuevaPartida = () => {
   puntuacionJugador = 0;
   muestraPuntuacionJugador(puntuacionJugador);
 };
+
+//Botón nueva partida
 
 const botonNuevaPartida = document.getElementById("nueva-partida");
 if (
@@ -151,6 +162,8 @@ if (
 ) {
   botonNuevaPartida.addEventListener("click", nuevaPartida);
 }
+
+// Función completa de simulacion de que hubiera pasado si sigo pidiendo cartas
 
 const simularQueHubieraPasado = () => {
   let simulacionPuntuacion = puntuacionJugador;
@@ -175,10 +188,9 @@ const simularQueHubieraPasado = () => {
         "Si hubieras seguido, podrías haber continuado sin pasarte.";
     }
   }
-}
+};
 
-
-
+//Botón de que hubiera pasado
 
 const botonPasado = document.getElementById("pasado");
 if (
@@ -189,5 +201,5 @@ if (
   botonPasado.addEventListener("click", simularQueHubieraPasado);
 }
 
-//faltaria boton reinicio y habilitar los botones
-//faltaria boton que hubiera pasado quitando tambien los botones
+//Faltaria la función plantarse deshabilitando los botones
+//Funcionalidad de plantarse y detener el flujo de los condicionales
